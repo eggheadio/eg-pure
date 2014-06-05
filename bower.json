@@ -1,20 +1,21 @@
 {
-  "name": "eg-pure",
-  "version": "0.0.0",
-  "homepage": "https://github.com/eggheadio/eg-pure",
-  "authors": [
-    "johnlindquist"
-  ],
-  "license": "MIT",
-  "private": true,
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
-    "tests"
-  ],
-  "dependencies": {
-    "angular": "~1.2.16"
-  }
+    "name": "eg-pure",
+    "version": "0.0.0",
+    "homepage": "https://github.com/eggheadio/eg-pure",
+    "authors": [
+        "johnlindquist"
+    ],
+    "license": "MIT",
+    "private": true,
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "test",
+        "tests"
+    ],
+    "dependencies": {
+        "angular": "~1.2.16",
+        "pure": "~0.5.0"
+    }
 }
