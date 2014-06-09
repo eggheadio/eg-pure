@@ -1,8 +1,11 @@
-var buttons = angular.module("egButtons", []);
+var buttons = angular.module("egButtons", ["egTemplates"]);
 
-buttons.directive("egToggleButton", function () {
+buttons.directive("egToggleButton", function ($templateCache) {
     return {
         restrict: "E",
-        templateUrl: "../../src/buttons/templates/egToggleButton.html"
+        templateUrl: "templates/toggleButton.html",
+        link: function (scope, element, attrs, ctrl) {
+            console.log($templateCache.get("templates/toggleButton.html"));
+        }
     }
-})
+});
