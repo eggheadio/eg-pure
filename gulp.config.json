@@ -1,16 +1,12 @@
 {
-    "desktop" : {
-    "src" : [
-        "dev/desktop/js/**/*.js",
-        "!dev/desktop/js/vendor/**"
-    ],
-        "dest" : "build/desktop/js"
-},
-    "mobile" : {
-    "src" : [
-        "dev/mobile/js/**/*.js",
-        "!dev/mobile/js/vendor/**"
-    ],
-        "dest" : "build/mobile/js"
-}
+    "dist": "./dist",
+    "angular": "./bower_components/angular/angular.js",
+    "templatesPath": "./src/**/*.html",
+    "templatesModuleName": "egTemplates",
+    "directivesPath": "./src/**/*.js",
+    "minName": "egPure.min.js",
+    "name": "egPure.js",
+    "specPath": "./e2e/*_spec.js",
+    "protractorConf": "./protractor-conf.js",
+    "templatePrefix": "templates/"
 }

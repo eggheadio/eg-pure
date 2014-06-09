@@ -16,21 +16,21 @@ gulp.task("build", function () {
     return streamqueue(
         {objectMode: true},
         //clean
-        gulp.src("./dist/**", {read: false})
+        gulp.src(config.dist, {read: false})
             .pipe(rimraf()),
         //add angular (needs to be first)
-        gulp.src("./bower_components/angular/angular.js"),
+        gulp.src(config.angular),
         //build templates
-        gulp.src("./src/**/*.html")
+        gulp.src(config.templatesPath)
             .pipe(minifyHtml({
                 empty: true,
                 spare: true,
                 quotes: true
             }))
             .pipe(ngHtml2js({
-                moduleName: "egTemplates",
+                moduleName: config.templatesModuleName,
                 rename: function (url) {
-                    return "templates/" + url.split("/").pop();
+                    return config.templatePrefix + url.split("/").pop();
                 }
             })
         )
@@ -38,20 +38,20 @@ gulp.task("build", function () {
 
         ,
         //add directives
-        gulp.src(["./src/**/*.js"])
+        gulp.src([config.directivesPath])
             .pipe(ngMin())
     )
-        .pipe(concat("egPure.js"))
-        .pipe(gulp.dest("./dist"))
+        .pipe(concat(config.name))
+        .pipe(gulp.dest(config.dist))
         .pipe(uglify())
-        .pipe(concat("egPure.min.js"))
-        .pipe(gulp.dest("./dist"));
+        .pipe(concat(config.minName))
+        .pipe(gulp.dest(config.dist));
 })
 
 gulp.task("e2e", ["build"], function () {
-    return gulp.src(["./e2e/*_spec.js"])
+    return gulp.src([config.specPath])
         .pipe(protractor({
-            configFile: "./protractor-conf.js"
+            configFile: config.protractorConf
         }))
         .on('error', function (e) {
             throw e
