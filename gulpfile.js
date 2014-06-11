@@ -10,6 +10,7 @@ var ngMin = require("gulp-ngmin");
 var rimraf = require("gulp-rimraf");
 var streamqueue = require("streamqueue");
 var protractor = require("gulp-protractor").protractor;
+var connect = require("gulp-connect");
 
 
 gulp.task("build", function () {
@@ -56,6 +57,10 @@ gulp.task("e2e", ["build"], function () {
         .on('error', function (e) {
             throw e
         })
+})
+
+gulp.task("server", function () {
+    connect.server();
 })
 
 
