@@ -1,11 +1,25 @@
 var buttons = angular.module("egButtons", ["egTemplates"]);
 
-buttons.directive("egToggleButton", function ($templateCache) {
+buttons.directive("egToggleButton", function () {
     return {
         restrict: "E",
-        templateUrl: "templates/toggleButton.html",
+        replace: true,
+        templateUrl: "toggleButton.html",
+        require: "ngModel",
+        transclude: true,
+
         link: function (scope, element, attrs, ctrl) {
-            console.log($templateCache.get("templates/toggleButton.html"));
+            var ngModel = ctrl;
+            scope.activeClass = "";
+            ngModel.$setViewValue(false);
+
+            element.on("click", function () {
+                ngModel.$setViewValue(!ngModel.$viewValue);
+
+                scope.activeClass = ngModel.$viewValue ? "pure-button-active" : "";
+                scope.$apply();
+
+            });
         }
-    }
+    };
 });

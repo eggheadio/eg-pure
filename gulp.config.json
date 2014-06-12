@@ -6,7 +6,8 @@
     "directivesPath": "./src/**/*.js",
     "minName": "egPure.min.js",
     "name": "egPure.js",
-    "specPath": "./e2e/*_spec.js",
+    "specPath": "./e2e/**/*_spec.js",
+    "specCoffeePath": "./e2e/**/*_spec.coffee",
     "protractorConf": "./protractor-conf.js",
     "templatePrefix": "templates/"
 }

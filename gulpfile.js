@@ -10,6 +10,10 @@ var ngMin = require("gulp-ngmin");
 var rimraf = require("gulp-rimraf");
 var streamqueue = require("streamqueue");
 var protractor = require("gulp-protractor").protractor;
+var changed = require("gulp-changed");
+var coffee = require("gulp-coffee");
+var gutil = require("gulp-util");
+var watch = require("gulp-watch");
 var connect = require("gulp-connect");
 
 
@@ -31,7 +35,7 @@ gulp.task("build", function () {
             .pipe(ngHtml2js({
                 moduleName: config.templatesModuleName,
                 rename: function (url) {
-                    return config.templatePrefix + url.split("/").pop();
+                    return url.split("/").pop();
                 }
             })
         )
@@ -61,6 +65,20 @@ gulp.task("e2e", ["build"], function () {
 
 gulp.task("server", function () {
     connect.server();
+})
+
+gulp.task("transpile", function() {
+    gulp.src(config.specCoffeePath)
+        .pipe(changed())
+        .pipe(coffee({bare: true}).on('error', gutil.log))
+        .pipe(gulp.dest('./e2e/'))
+});
+
+gulp.task("watch", function () {
+    var watcher = gulp.watch(config.specCoffeePath, ['transpile']);
+    watcher.on('change', function(event) {
+        console.log('File '+event.path+' was '+event.type+', running tasks...');
+    });
 })
 
 

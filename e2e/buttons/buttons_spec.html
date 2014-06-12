@@ -7,7 +7,12 @@
 </head>
 <body ng-app="egButtons">
 
-<eg-toggle-button id="one"></eg-toggle-button>
+
+<eg-toggle-button id="one" ng-model="toggleValue">Click me</eg-toggle-button>
+<div>{{ toggleValue }}</div>
+<eg-toggle-button id="two" ng-model="toggleValue"></eg-toggle-button>
+
+
 
 
 <script src="../../dist/egPure.min.js"></script>
